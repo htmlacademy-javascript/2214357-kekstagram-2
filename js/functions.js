@@ -44,6 +44,6 @@ const timeWorking = (timeStart, timeStop, timeMeet, duration) => {
   return !!(start <= meet + duration && meet + duration <= end);
 
 };
-console.log(timeWorking('8:00', '17:30', '14:00', 211));
+console.log(timeWorking('8:00', '17:30', '14:00', 212));
 
 // Алексей подскажи как тут лучше всего сделать рефакторинг?
