@@ -33,7 +33,7 @@ const MESSAGES = [
   'Лица у людей на фотке перекошены, как будто их избивают., Как можно было поймать такой неудачный момент?!'
 ];
 
-const PHOTO_COUNT = 26;
+const PHOTO_COUNT = 25;
 
 const createIdGenirator = () => {
   let currentId = 0;
@@ -61,4 +61,6 @@ const createPhoto = () => ({
 
 const generatePhotos = () => Array.from({ length: PHOTO_COUNT }, createPhoto);
 
-export { generatePhotos };
+const photos = generatePhotos();
+
+export { generatePhotos, photos };
