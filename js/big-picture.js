@@ -30,7 +30,7 @@ function closeBigPicture () {
   buttonClose.removeEventListener('click', onPictureCancelClick);
 }
 
-const openBigPicture = (pictureId) => {
+function openBigPicture (pictureId) {
   const currentPhoto = photos.find((photo) => photo.id === Number(pictureId));
   const fragment = document.createDocumentFragment();
 
@@ -58,6 +58,6 @@ const openBigPicture = (pictureId) => {
   photoDescription.textContent = currentPhoto.description;
   commentCount.classList.add('hidden');
   buttonLoader.classList.add('hidden');
-};
+}
 
 export { openBigPicture };
