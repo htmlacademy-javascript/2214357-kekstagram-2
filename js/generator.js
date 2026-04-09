@@ -61,6 +61,5 @@ const createPhoto = () => ({
 
 const generatePhotos = () => Array.from({ length: PHOTO_COUNT }, createPhoto);
 
-const photos = generatePhotos();
 
-export { generatePhotos, photos };
+export { generatePhotos };
