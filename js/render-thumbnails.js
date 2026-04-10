@@ -16,7 +16,7 @@ const renderThumbnails = (userPhoto) => {
     photoFragment.append(photoElement);
   });
 
-  usersPhotoList.append(photoFragment);
+  usersPhotoList.appendChild(photoFragment);
 };
 
 export { renderThumbnails };
