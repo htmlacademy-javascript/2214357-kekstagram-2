@@ -21,16 +21,14 @@ let currentComments = [];
 const onEscKeyDown = (evt) => {
   if (isEscapeKey(evt)) {
     closeBigPicture();
-    deleteComments();
   }
 };
 
 const onPictureCancelClick = () => {
   closeBigPicture();
-  deleteComments();
 };
 
-const renderNewCommentsStep = () => {
+const onShowMoreButtonClick = () => {
   const renderingNewComments = currentComments.slice(commentCount, commentCount + COMMENTS__STEP);
   const newCommentsLength = renderingNewComments.length += commentCount;
   const fragment = document.createDocumentFragment();
@@ -57,17 +55,17 @@ const renderNewCommentsStep = () => {
 
 const renderComments = (currentPhotoComments) => {
   currentComments = currentPhotoComments;
-  renderNewCommentsStep();
+  onShowMoreButtonClick();
 
-  buttonLoader.addEventListener('click', renderNewCommentsStep);
+  buttonLoader.addEventListener('click', onShowMoreButtonClick);
 };
 
-function deleteComments () {
+const deleteComments = () => {
   socialComments.innerHTML = '';
   commentCount = 0;
   buttonLoader.classList.remove('hidden');
-  buttonLoader.removeEventListener('click', renderNewCommentsStep);
-}
+  buttonLoader.removeEventListener('click', onShowMoreButtonClick);
+};
 
 const renderBigPicture = (currentPhoto) => {
   bigPictureImage.src = currentPhoto.url;
@@ -78,6 +76,8 @@ const renderBigPicture = (currentPhoto) => {
 };
 
 function closeBigPicture () {
+  deleteComments();
+
   bigPicture.classList.add('hidden');
   document.querySelector('body').classList.remove('modal-open');
   document.removeEventListener('keydown', onEscKeyDown);
@@ -111,5 +111,5 @@ const setPicturesListener = (photos) => {
   usersPhotoList.addEventListener('click', (evt) => onPictureContainerClick(evt, photos));
 };
 
-export { setPicturesListener };
+export { setPicturesListener, onEscKeyDown };
 
