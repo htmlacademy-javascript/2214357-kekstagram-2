@@ -55,15 +55,15 @@ const initEffect = () => {
   });
 
   updateSliderEffect('none');
-
-  effectList.addEventListener('change', (evt) => {
-    if(evt.target.matches('.effects__radio')) {
-      currentEffect = evt.target.value;
-    }
-
-    changeSliderOptions();
-  });
 };
+
+effectList.addEventListener('change', (evt) => {
+  if(evt.target.matches('.effects__radio')) {
+    currentEffect = evt.target.value;
+  }
+
+  changeSliderOptions();
+});
 
 const resetEffect = () => {
   noUiSlider.destroy(sliderElement);
