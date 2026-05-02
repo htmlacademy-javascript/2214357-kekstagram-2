@@ -11,10 +11,12 @@ let currentEffect = 'none';
 const updateSliderEffect = (effect) => {
   if(effect === 'none') {
     sliderContainer.style.display = 'none';
-    imagePreview.style.filter = 'none';
-  } else {
-    sliderContainer.style.display = 'block';
+    imagePreview.removeAttribute('style');
+
+    return;
   }
+
+  sliderContainer.style.display = 'block';
 
   sliderElement.noUiSlider.on('update', () => {
     const sliderValue = sliderElement.noUiSlider.get();
@@ -66,7 +68,8 @@ effectList.addEventListener('change', (evt) => {
 });
 
 const resetEffect = () => {
-  noUiSlider.destroy(sliderElement);
+  sliderElement.noUiSlider.destroy(sliderElement);
+  updateSliderEffect('none');
 };
 
 export { initEffect, resetEffect };

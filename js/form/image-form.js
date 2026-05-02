@@ -13,9 +13,9 @@ const descriptionInput = uploadForm.querySelector('.text__description');
 const onEscKeyDown = (evt) => {
   if (isEscapeKey(evt) && (document.activeElement !== hashtagsInput || document.activeElement !== descriptionInput)) {
     closeUploadModal();
-    uploadForm.reset();
   }
 };
+
 const onUploadCancelClick = () => {
   closeUploadModal();
 };
@@ -31,7 +31,7 @@ function closeUploadModal () {
   uploadForm.reset();
 }
 
-const openUploadModal = () =>{
+const openUploadModal = () => {
   formOverlay.classList.remove('hidden');
   document.querySelector('body').classList.add('.modal-open');
   document.addEventListener('keydown', onEscKeyDown);
