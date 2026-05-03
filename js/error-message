@@ -1,0 +1,23 @@
+const MESSAGE_TIMEOUT = 5000;
+
+const errorLoadTemplate = document.querySelector('#data-error').content;
+const errorMessage = document.querySelector('.data-error__title');
+
+
+const generateErrorMesaage = (message) => {
+  const errorLoad = errorLoadTemplate.cloneNode(true);
+
+  if (message) {
+    errorMessage.textContent = message;
+  }
+
+  document.body.append(errorLoad);
+
+  const errorLoadData = document.querySelector('.data-error');
+
+  setTimeout(() => {
+    errorLoadData.remove();
+  },MESSAGE_TIMEOUT);
+};
+
+export { generateErrorMesaage };
