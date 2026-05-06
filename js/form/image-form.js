@@ -1,7 +1,9 @@
 import { isEscapeKey } from '../util';
 import { initScale, resetScale } from './image-scale';
-import { initValidation } from './validation';
+import { initValidation, validateForm } from './validation';
 import { initEffect, resetEffect } from './slider-effect';
+import { sendData } from '../load-data';
+import { showSuccessMessage, showErrorMessage, errorMessageContainer } from '../messages';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadInput = uploadForm.querySelector('.img-upload__input');
@@ -10,8 +12,9 @@ const buttonCloseUpload = uploadForm.querySelector('.img-upload__cancel');
 const hashtagsInput = uploadForm.querySelector('.text__hashtags');
 const descriptionInput = uploadForm.querySelector('.text__description');
 
+
 const onEscKeyDown = (evt) => {
-  if (isEscapeKey(evt) && (document.activeElement !== hashtagsInput || document.activeElement !== descriptionInput)) {
+  if (isEscapeKey(evt) && (document.activeElement !== hashtagsInput || document.activeElement !== descriptionInput) && !errorMessageContainer) {
     closeUploadModal();
   }
 };
@@ -42,7 +45,28 @@ const openUploadModal = () => {
   initValidation();
 };
 
+const sendFormData = async (formElement) => {
+  const isValid = validateForm();
+
+  if (isValid) {
+    try {
+      await sendData(new FormData(formElement));
+      closeUploadModal();
+      showSuccessMessage();
+    } catch (error) {
+      showErrorMessage();
+    }
+  }
+};
+
+const onFormSubmit = (evt) => {
+  evt.preventDefault();
+  sendFormData(evt.target);
+};
+
 const initUploadModal = () => {
+  uploadForm.addEventListener('submit', onFormSubmit);
+
   uploadInput.addEventListener('change', () => {
     openUploadModal();
   });

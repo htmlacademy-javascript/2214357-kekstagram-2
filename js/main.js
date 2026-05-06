@@ -1,5 +1,5 @@
 import { getData } from './load-data';
-import { generateErrorMesaage } from './error-message';
+import { generateErrorMessage } from './messages.js';
 import { renderThumbnails } from './render-thumbnails';
 import { setPicturesListener } from './big-picture';
 import { initUploadModal } from './form/image-form';
@@ -9,13 +9,10 @@ const bootstrap = async () => {
     const photos = await getData();
     renderThumbnails(photos);
     setPicturesListener(photos);
+    initUploadModal();
   }catch(error) {
-    generateErrorMesaage();
+    generateErrorMessage();
   }
 };
-// НЕ ПОНЯЛ КАК РЕАЛИЗОВАТЬ С ПОМОЩЮ ЦЕПОЧЕК .then(), не запустилось?
 
 bootstrap();
-initUploadModal();
-
-

@@ -13,6 +13,8 @@ const pristine = new Pristine(uploadForm, {
   errorTextClass: 'img-upload__field-wrapper--error',
 });
 
+const validateForm = () => pristine.validate();
+
 const checkRules = [
   {
     check: (inputArray) => inputArray.some((element) => !/^#[a-zа-яё1-9]{1,19}$/i.test(element)),
@@ -67,4 +69,4 @@ const initValidation = () => {
   pristine.addValidator(descriptionInput, validDescription, () => errorMessage);
 };
 
-export { initValidation };
+export { initValidation, validateForm };

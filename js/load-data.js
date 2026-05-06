@@ -15,13 +15,14 @@ const errorText = {
   [Method.POST]: 'Не удалось загрузить данные на сервер!'
 };
 
-const loadData = async (route, method) => {
+const loadData = async (route, method = Method.GET, body = null) => {
 
-  const response = await fetch(`${URL}${route}`, {method});
+  const response = await fetch(`${URL}${route}`, {method, body});
   return response.ok ? await response.json() : Promise.reject(errorText[method], response.status);
 };
 
 const getData = async () => await loadData(Route.GET_DATA, Method.GET);
+const sendData = async (body) => await loadData(Route.SENT_DATA, Method.POST, body);
 
-export { getData };
+export { getData, sendData };
 
