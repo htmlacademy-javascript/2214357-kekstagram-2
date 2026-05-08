@@ -31,11 +31,12 @@ function closeUploadModal () {
   document.querySelector('body').classList.remove('.modal-open');
   document.removeEventListener('keydown', onEscKeyDown);
   buttonCloseUpload.removeEventListener('click', onUploadCancelClick);
-  fileChooser.removeEventListener('change', onFileChooserChange);
 
   resetEffect();
   resetScale();
   uploadForm.reset();
+  fileChooser.reset();
+  // При повторной попытке отправить неверный формата файла ошибка не появляется. Подскажи как реализовать.
 }
 
 const openUploadModal = () => {
