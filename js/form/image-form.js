@@ -35,7 +35,6 @@ function closeUploadModal () {
   resetEffect();
   resetScale();
   uploadForm.reset();
-  fileChooser.reset();
   // При повторной попытке отправить неверный формата файла ошибка не появляется. Подскажи как реализовать.
 }
 
