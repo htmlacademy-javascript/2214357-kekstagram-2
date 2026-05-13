@@ -29,7 +29,7 @@ const onUploadCancelClick = () => {
 
 function closeUploadModal () {
   formOverlay.classList.add('hidden');
-  document.querySelector('body').classList.remove('.modal-open');
+  document.querySelector('body').classList.remove('modal-open');
   document.removeEventListener('keydown', onEscKeyDown);
   buttonCloseUpload.removeEventListener('click', onUploadCancelClick);
 
@@ -40,7 +40,7 @@ function closeUploadModal () {
 
 const openUploadModal = () => {
   formOverlay.classList.remove('hidden');
-  document.querySelector('body').classList.add('.modal-open');
+  document.querySelector('body').classList.add('modal-open');
   document.addEventListener('keydown', onEscKeyDown);
   buttonCloseUpload.addEventListener('click', onUploadCancelClick);
 
