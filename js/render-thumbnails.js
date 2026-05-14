@@ -1,11 +1,11 @@
 const usersPhotoList = document.querySelector('.pictures');
 const thumbnails = document.querySelector('#picture').content.querySelector('.picture');
 
-const renderThumbnails = (userPhoto) => {
+const renderThumbnails = (userPhotos) => {
   usersPhotoList.querySelectorAll('.picture').forEach((photo) => photo.remove());
   const photoFragment = document.createDocumentFragment();
 
-  userPhoto.forEach((photo) => {
+  userPhotos.forEach((photo) => {
     const photoElement = thumbnails.cloneNode(true);
 
     photoElement.dataset.pictureId = photo.id;

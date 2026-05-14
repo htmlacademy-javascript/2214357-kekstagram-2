@@ -1,10 +1,11 @@
+const SCALE_STEP = 0.25;
+
 const scaleValue = document.querySelector('.scale__control--value');
 const imagePrewiev = document.querySelector('.img-upload__preview img');
 const buttonSmaller = document.querySelector('.scale__control--smaller');
 const buttonBigger = document.querySelector('.scale__control--bigger');
 
 let scale = 1;
-const SCALE_STEP = 0.25;
 
 const onButtonSmallerClick = () => {
   if(scale > SCALE_STEP) {

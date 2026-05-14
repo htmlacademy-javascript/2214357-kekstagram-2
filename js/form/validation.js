@@ -1,9 +1,9 @@
+const MAX_QUATITY = 5;
+const MAX_QUANTITY_SIMBOL = 140;
+
 const uploadForm = document.querySelector('.img-upload__form');
 const hashtagsInput = uploadForm.querySelector('.text__hashtags');
 const descriptionInput = uploadForm.querySelector('.text__description');
-
-const MAX_QUATITY = 5;
-const MAX_QUANTITY_SIMBOL = 140;
 
 let errorMessage = '';
 
@@ -17,20 +17,20 @@ const validateForm = () => pristine.validate();
 
 const checkRules = [
   {
-    check: (inputArray) => inputArray.some((element) => !/^#[a-zа-яё1-9]{1,19}$/i.test(element)),
+    check: (inputsArray) => inputsArray.some((element) => !/^#[a-zа-яё1-9]{1,19}$/i.test(element)),
     error: 'Не допустимые символы!'
   },
   {
-    check: (inputArray) => inputArray.length > MAX_QUATITY,
+    check: (inputsArray) => inputsArray.length > MAX_QUATITY,
     error: `Не более ${MAX_QUATITY} хэштегов!`
   },
   {
-    check: (inputArray) => inputArray.some((element, num, Array) => Array.includes(element, num + 1)),
+    check: (inputsArray) => inputsArray.some((element, num, elementsArray) => elementsArray.includes(element, num + 1)),
     error: 'Хэштэги не должны повторяться!'
   },
 ];
 
-const validHashtags = (value) => {
+const validateHashtags = (value) => {
   const inputText = value.toLowerCase().trim();
   const inputArray = inputText.split(' ');
 
@@ -51,11 +51,11 @@ const validHashtags = (value) => {
   return checks;
 };
 
-const validDescription = (value) => {
-  const inputCommentArray = value;
-  inputCommentArray.split(' ');
+const validateDescription = (value) => {
+  const inputCommentsArray = value;
+  inputCommentsArray.split(' ');
 
-  const isInvalid = inputCommentArray.length > MAX_QUANTITY_SIMBOL;
+  const isInvalid = inputCommentsArray.length > MAX_QUANTITY_SIMBOL;
 
   if (isInvalid){
     errorMessage = `Не более ${MAX_QUANTITY_SIMBOL} символов!`;
@@ -65,8 +65,8 @@ const validDescription = (value) => {
 };
 
 const initValidation = () => {
-  pristine.addValidator(hashtagsInput, validHashtags, () => errorMessage);
-  pristine.addValidator(descriptionInput, validDescription, () => errorMessage);
+  pristine.addValidator(hashtagsInput, validateHashtags, () => errorMessage);
+  pristine.addValidator(descriptionInput, validateDescription, () => errorMessage);
 };
 
 export { initValidation, validateForm };

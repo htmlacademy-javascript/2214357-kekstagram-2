@@ -1,5 +1,7 @@
 import { isEscapeKey } from './util';
 
+const COMMENTS_STEP = 5;
+
 const usersPhotoList = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImage = bigPicture.querySelector('.big-picture__img img');
@@ -13,7 +15,6 @@ const buttonLoader = document.querySelector('.comments-loader');
 const buttonClose = document.querySelector('.big-picture__cancel');
 socialComments.innerHTML = '';
 
-const COMMENTS_STEP = 5;
 let commentCount = 0;
 let currentComments = [];
 

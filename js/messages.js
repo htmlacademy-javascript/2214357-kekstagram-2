@@ -28,10 +28,12 @@ const generateErrorMessage = (message) => {
 const closeMessage = () => {
   if (successMessageContainer) {
     successMessageContainer.remove();
+    return;
   }
 
   if(errorMessageContainer) {
     errorMessageContainer.remove();
+    return;
   }
 
   document.body.removeEventListener('click', onBodyCancelClick);
@@ -82,4 +84,4 @@ const showErrorMessage = () => {
   showPopupMessage(errorNode);
 };
 
-export { generateErrorMessage, showSuccessMessage, showErrorMessage, hasErrorMessage };
+export { generateErrorMessage, showSuccessMessage, showErrorMessage, hasErrorMessage, closeMessage };
