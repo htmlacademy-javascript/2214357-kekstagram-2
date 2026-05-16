@@ -1,6 +1,6 @@
 import { isEscapeKey } from '../util';
 import { initScale, resetScale } from './image-scale';
-import { initValidation, validateForm } from './validation';
+import { validateForm } from './validation';
 import { initEffect, resetEffect } from './slider-effect';
 import { sendData } from '../load-data';
 import { generateErrorMessage, showSuccessMessage, showErrorMessage, hasErrorMessage, closeMessage } from '../messages';
@@ -17,16 +17,18 @@ const preview = document.querySelector('.img-upload__preview img');
 const uploadFormEffects = uploadForm.querySelectorAll('.effects__preview');
 
 const onEscKeyDown = (evt) => {
-  if (isEscapeKey(evt) && (document.activeElement === hashtagsInput || document.activeElement === descriptionInput)) {
-    return;
-  }
+  if (isEscapeKey(evt)) {
+    if (document.activeElement === hashtagsInput || document.activeElement === descriptionInput) {
+      return;
+    }
 
-  if(hasErrorMessage()) {
-    closeMessage();
-    return;
-  }
+    if (hasErrorMessage()) {
+      closeMessage();
+      return;
+    }
 
-  closeUploadModal();
+    closeUploadModal();
+  }
 };
 
 const onUploadCancelClick = () => {
@@ -36,7 +38,7 @@ const onUploadCancelClick = () => {
 function closeUploadModal () {
   formOverlay.classList.add('hidden');
   document.querySelector('body').classList.remove('modal-open');
-  document.removeEventListener('keydown', onEscKeyDown);
+  document.body.removeEventListener('keydown', onEscKeyDown);
   buttonCloseUpload.removeEventListener('click', onUploadCancelClick);
 
   resetEffect();
@@ -52,7 +54,6 @@ const openUploadModal = () => {
 
   initEffect();
   initScale();
-  initValidation();
 };
 
 function onFileChooserChange () {

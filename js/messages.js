@@ -28,23 +28,21 @@ const generateErrorMessage = (message) => {
 const closeMessage = () => {
   if (successMessageContainer) {
     successMessageContainer.remove();
-    return;
   }
 
   if(errorMessageContainer) {
     errorMessageContainer.remove();
-    return;
   }
 
+  document.removeEventListener('keydown', onEscKeyDownMessage);
   document.body.removeEventListener('click', onBodyCancelClick);
-  document.body.removeEventListener('keydown', onEscKeyDownMessage);
   errorMessageContainer = null;
   successMessageContainer = null;
 };
 
 
-const onMessageCloseButton = (container) => {
-  container.remove();
+const onMessageCloseButton = () => {
+  closeMessage();
 };
 
 function onEscKeyDownMessage (evt) {
@@ -67,7 +65,7 @@ const showPopupMessage = (node) => {
   document.body.append(node);
   button.addEventListener('click', () => onMessageCloseButton(node));
   document.body.addEventListener('click', onBodyCancelClick);
-  document.body.addEventListener('keydown', onEscKeyDownMessage);
+  document.addEventListener('keydown', onEscKeyDownMessage);
 };
 
 const showSuccessMessage = () => {

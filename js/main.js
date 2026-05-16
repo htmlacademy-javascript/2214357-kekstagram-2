@@ -4,6 +4,7 @@ import { renderThumbnails } from './render-thumbnails';
 import { setPicturesListener } from './big-picture';
 import { initUploadModal } from './form/image-form';
 import { initFilter } from './filter.js';
+import { initValidation } from './form/validation';
 
 const bootstrap = async () => {
   try {
@@ -12,7 +13,8 @@ const bootstrap = async () => {
     setPicturesListener(photos);
     initFilter(photos);
     initUploadModal();
-  }catch(error) {
+    initValidation();
+  } catch(error) {
     generateErrorMessage();
   }
 };
