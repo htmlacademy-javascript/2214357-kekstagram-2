@@ -5,14 +5,14 @@ const renderThumbnails = (userPhotos) => {
   usersPhotoList.querySelectorAll('.picture').forEach((photo) => photo.remove());
   const photoFragment = document.createDocumentFragment();
 
-  userPhotos.forEach((photo) => {
+  userPhotos.forEach(({id, url, description, comments, likes}) => {
     const photoElement = thumbnails.cloneNode(true);
 
-    photoElement.dataset.pictureId = photo.id;
-    photoElement.querySelector('.picture__img').src = photo.url;
-    photoElement.querySelector('.picture__img').alt = photo.description;
-    photoElement.querySelector('.picture__comments').textContent = photo.comments.length;
-    photoElement.querySelector('.picture__likes').textContent = photo.likes;
+    photoElement.dataset.pictureId = id;
+    photoElement.querySelector('.picture__img').src = url;
+    photoElement.querySelector('.picture__img').alt = description;
+    photoElement.querySelector('.picture__comments').textContent = comments.length;
+    photoElement.querySelector('.picture__likes').textContent = likes;
 
     photoFragment.append(photoElement);
   });
